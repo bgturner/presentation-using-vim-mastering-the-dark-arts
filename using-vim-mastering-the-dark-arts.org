@@ -1,0 +1,8 @@
+#+OPTIONS: num:nil toc:nil
+#+REVEAL_TRANS: Fade
+#+REVEAL_THEME: none
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 1400px
+#+REVEAL_HLEVEL: 1
+#+TITLE: Using Vim: Mastering the Dark Arts
+#+Author: Benjamin Turner
+
