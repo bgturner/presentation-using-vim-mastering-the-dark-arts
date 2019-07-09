@@ -1,0 +1,7 @@
+* Using Vim: Mastering the Dark Arts
+
+** Description
+     
+Vim has a reputation for being old and hard to use. This is well deserved. Maybe you've heard about Vim and have mastered quitting it. Maybe you're curious about learning more, but want to know the larger /why/ -- what's in it for me?
+
+Let's take a look at some of the powerful features that are built into Vim and how learning it can be a great addition to your tech toolbelt.
