@@ -6,3 +6,41 @@
 #+TITLE: Using Vim: Mastering the Dark Arts
 #+Author: Benjamin Turner
 
+* Why Vim when there are so many good alternatives?
+* Vi-style bindings in other places
+    - Editors
+    - Shells
+* Modal editing: Two Main Modes
+    - Normal
+      - Navigating and understanding text
+    - Insert
+      - Insert Text
+* Vim Language
+* Search
+    - Big improvements with =incsearch= and =hls=
+    - =:substitute= -- =:%s/regex/replace/g=
+* Macros
+    - Registers?
+    - Recording / Running
+    - Think of them as being much more lightweight than other "macros", though they can become quite large if you want
+      - "Put a semicolon at the end of each line"
+      - think of other examples
+* Most of the previous stuff can be done in other editors with their "vi-mode" plugins
+* =ex= Mode
+    - You've already made use of this with =:w= and =:q=. Maybe even if you've tried the =:help= command
+    - =:h ex-cmd-index= -- get a list of all ex commands
+    - =:vimgrep=
+      - Quickfix 
+      - Add mappings for quicker navigation
+    - =:global=
+      - History of =grep= -- Came from =ed= and can still be accessed from within Vim by typing =Q=
+	- "Global regular expression print"
+      - =:g/regex/normal @q=
+* Scripting Vim
+    - =vim -c ":<do-stuff>"=
+* Is it "worth it" to learn Vim?
+* Resources
+    - [[http://vimcasts.org/][Vimcasts.org]]
+    - [[https://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980][Practical Vim]]
+    - [[https://www.vimgolf.com/][VimGolf]]
+
