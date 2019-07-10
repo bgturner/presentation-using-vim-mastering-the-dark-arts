@@ -7,41 +7,233 @@
 #+TITLE: Using Vim: Mastering the Dark Arts
 #+Author: Benjamin Turner
 
-* Why Vim when there are so many good alternatives?
-* Vi-style bindings in other places
-    - Editors
-    - Shells
-* Modal editing: Two Main Modes
-    - Normal
-      - Navigating and understanding text
-    - Insert
-      - Insert Text
-* Vim Language
+* Playground
+** Testing Javascript
+   #+BEGIN_SRC javascript
+   var something = 123;
+   #+END_SRC
+** Testing PHP
+   #+BEGIN_SRC php
+   <?php
+   echo "Something";
+   #+END_SRC
+** Testing HTML
+   #+BEGIN_SRC html
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <title>Something</title>
+   </head>
+   <body>
+     <h1>Something</title>
+   </body>
+   </html>
+   #+END_SRC
+** Testing Bash
+   #+BEGIN_SRC shell
+   cat file1 file2 file3
+   #+END_SRC
+* Vim is like...
+** A Jedi Light Saber
+** A Unicorn's Horn
+** A Heavy Metal God's Ax
+** You're very own Patronus
+** Basically
+   - When you know how to use them, magical things can happen.
+** How does it do this?
+* Modal Editing
+  
+There are different *modes*, or /states/ that can be activated.
+
+** Two Main Modes
+   - *Normal*: Move around a document, save settings, basically the "do stuff" mode.
+   - *Insert*: Inserting text. This is what you're used to in other editors.
+
+** TODO asciicast showing inserting text and then moving the cursor around
+
+* The Vim Language
+  
+** 
+
+One consequence of having two modes, is that you can describe exactly what you want to do by executing a series of characters.
+
+** Moving between words
+
+   - =w= Move to the start of the next word
+   - =e= Move to the end of the next word
+   - =b= Move back one word
+   - =f= =<letter>= Move to the next letter on this line
+   - =F= =<letter>= Move to the previous letter on this line
+     
+** TODO asciicast of moving around some text
+   
+** Moveing in the document
+   
+   - =}=  "Move to the next section"
+   - =G=  "Move to the end of the document"
+   - =gg= "Move to the beginning of the document"
+
+** Delete (cut), Yank (copy), Change
+   
+These require a *motion* to know how they should operate.
+
+** Think of
+
+   - =dip= "Delete in paragraph"
+   - =y3w= "Yank the next three words"
+   - =ctx= "Change until the next 'x'"
+   - =dG=  "Delete to the end of the document"
+     
+** 
+
+As you become more fluent in Vim's language, reading and writing in this syntax becomes second nature.
+
+We'll explore more of these later. The main takeaway that we can succinctly describe the changes we want to make using Vim's language.
+
 * Search
-    - Big improvements with =incsearch= and =hls=
-    - =:substitute= -- =:%s/regex/replace/g=
+  - =/= "Start a search going forward in the document"
+  - =?= "Start a search going backwards in the document"
+  - =n= "Go to the next search hit"
+  - =N= "Go to the previous search hit"
+    
+** TODO gif of searching
+
+** This works, but...
+   
+It's hard to know exactly where the cursor has jumped to. 
+
+What if we could get some better visual feedback?
+
+** Two quick settings to enable
+   
+   - =:set incsearch= "Turn incremental search on"
+   - =:set noincsearch= "Turn incremental search off"
+   - =:set hlsearch= "Turn highlight search on"
+   - =:set nohlsearch= "Turn highlight search off"
+     
+** TODO gif of searching with these settings enabled
+
+This immediately improves the experience since you can see what you are searching for as well as be able to stop typing the moment you have your hit.
+
 * Macros
-    - Registers?
-    - Recording / Running
-    - Think of them as being much more lightweight than other "macros", though they can become quite large if you want
-      - "Put a semicolon at the end of each line"
-      - think of other examples
-* Most of the previous stuff can be done in other editors with their "vi-mode" plugins
+  
+Remember how we can describe our changes specifically by using Vim's language?
+
+What if we could store those "descriptions" and replay them whenever we wanted to?
+
+** Registers
+   
+Vim has *named registers* from =a .. z= 
+
+Think of these like a variable that you can store text in. 
+
+** Record Macros
+
+   - =qq= "Start and stop recording a macro to the 'q' register"
+
+*** TODO gif of recording a macros
+
+** Replay Macros
+   
+   - =@q=   "Replay the macro in the 'q' register"
+   - =@@=   "Replace the last used macro"
+   - =12@q= "For twelve times, replay the 'q' macro"
+
+*** TODO gif of replaying a macros
+
+** 
+
+Because creating and using a macro is so easy, this becomes a great way to apply tedious and repeditive changes.
+
+** TODO Examples?
+
+* Ok... so neat?
+  
+The previous things can all mostly be done with "vi-mode" plugins that are available for other editors.
+
+So why continue with Vim?
+
 * =ex= Mode
-    - You've already made use of this with =:w= and =:q=. Maybe even if you've tried the =:help= command
-    - =:h ex-cmd-index= -- get a list of all ex commands
-    - =:vimgrep=
-      - Quickfix 
-      - Add mappings for quicker navigation
-    - =:global=
-      - History of =grep= -- Came from =ed= and can still be accessed from within Vim by typing =Q=
-	- "Global regular expression print"
-      - =:g/regex/normal @q=
+  
+** 
+
+While "Normal" and "Insert" mode are the most common modes in Vim, Ex-mode is where things really get exciting!
+
+** 
+
+You've probably already made use of this mode with =:w= and =:q=. 
+
+    - =:help ex-cmd-index= -- get a list of all ex commands
+      
+** Substitute -- Maybe get rid of me?
+
+    - =:%s/regex/replace/g=
+      
+* Vimgrep
+   
+=:vimgrep 'search-string' **/*.php=
+
+"Find things in these files"
+
+** TODO gif of vimgrep
+   
+** Quickfix
+   
+A list of places within documents.
+
+** 
+   
+   - =copen= "Open the quickfix window"
+   - =cclose= "Close the quickfix window"
+   - =cnext= "Display the next error"
+   - =cprevious= "Display the previous error"
+
+** 
+   
+By default Vimgrep will populate the quickfix list which allows you to quickly jump to different locations.
+
+** TODO gif of quickfix
+
+* Global Ex Command
+   
+=:g/regex/command=
+   
+"Do stuff on lines"
+
+** Printing Lines
+   
+Do you ever wonder where =grep= got its name?
+
+** Global Regular Expression Print
+
+=:g/regex/p=
+
+** TODO gif showing table structure of sql dump
+
+** Deleting Lines
+   
+   - =:g/regex/d= "Delete every line matching a regex"
+   - =:v/regex/d= "Delete every line NOT matching a regex"
+     
+** TODO gif showing deletion of lines
+	
+** Execute Normal on every matched line
+   
+   - =:g/regex/normal @q=
+     
+** TODO gif showing global normal command
+
 * Scripting Vim
     - =vim -c ":<do-stuff>"=
+
 * Is it "worth it" to learn Vim?
+  
 * Resources
+    - [[https://danielmiessler.com/study/vim/][Daniel Miessler: Learn Vim for the Last Time]]
     - [[http://vimcasts.org/][Vimcasts.org]]
     - [[https://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980][Practical Vim]]
     - [[https://www.vimgolf.com/][VimGolf]]
-
+* Why Vim when there are so many good text editors?
+** Vi-style bindings in other places
+     - Editors
+     - Shells
