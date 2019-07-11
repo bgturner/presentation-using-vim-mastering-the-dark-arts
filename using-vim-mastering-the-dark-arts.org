@@ -7,96 +7,115 @@
 #+TITLE: Using Vim: Mastering the Dark Arts
 #+Author: Benjamin Turner
 
-* Playground
-** Testing Javascript
-   #+BEGIN_SRC javascript
-   var something = 123;
-   #+END_SRC
-** Testing PHP
-   #+BEGIN_SRC php
-   <?php
-   echo "Something";
-   #+END_SRC
-** Testing HTML
-   #+BEGIN_SRC html
-   <!DOCTYPE html>
-   <html>
-   <head>
-     <title>Something</title>
-   </head>
-   <body>
-     <h1>Something</title>
-   </body>
-   </html>
-   #+END_SRC
-** Testing Bash
-   #+BEGIN_SRC shell
-   cat file1 file2 file3
-   #+END_SRC
+# NOTE: The terminal size of this presentation is 83x28 and has the font scaled to up a number of times
+
 * Vim is like...
-** A Jedi Light Saber
-** A Unicorn's Horn
-** A Heavy Metal God's Ax
+** A Unicorn Horn
+  :PROPERTIES:
+  :reveal_background: img/unicorn-pug.jpg
+  :END:
+
+** The Ax of a Heavy Metal God
+  :PROPERTIES:
+  :reveal_background: img/brutal-legend.jpg
+  :END:
+
 ** You're very own Patronus
-** Basically
-   - When you know how to use them, magical things can happen.
-** How does it do this?
+  :PROPERTIES:
+  :reveal_background: img/patronus.jpg
+  :END:
+
+** 
+
+When you know how to use it, uncanny things can happen.
+
 * Modal Editing
-  
+  :PROPERTIES:
+  :reveal_background: img/Dr_Jekyll_and_Mr_Hyde_poster_edit2.jpg
+  :END:
+
 There are different *modes*, or /states/ that can be activated.
 
 ** Two Main Modes
-   - *Normal*: Move around a document, save settings, basically the "do stuff" mode.
-   - *Insert*: Inserting text. This is what you're used to in other editors.
+   - *Normal*
+     - "Do stuff" mode. Move around a document, copy and paste, etc.
+   - *Insert*
+     - Insert text. This is what you're used to in other editors.
 
-** TODO asciicast showing inserting text and then moving the cursor around
+** 
+   
+[[file:./img/vim-two-main-modes.gif]]
 
 * The Vim Language
   
 ** 
 
-One consequence of having two modes, is that you can describe exactly what you want to do by executing a series of characters.
+In Normal mode, you can describe exactly what you want to do by executing a series of characters.
+
+** 
+  :PROPERTIES:
+  :reveal_background: img/movement-prose.gif
+  :END:
 
 ** Moving between words
 
    - =w= Move to the start of the next word
    - =e= Move to the end of the next word
    - =b= Move back one word
-   - =f= =<letter>= Move to the next letter on this line
-   - =F= =<letter>= Move to the previous letter on this line
+   - =f.= Move to the next period '.' on this line
+   - =fA= Move to the next capital 'A' on this line
+   - =F;= Move to the previous semi-colon on this line
      
-** TODO asciicast of moving around some text
-   
 ** Moveing in the document
    
    - =}=  "Move to the next section"
    - =G=  "Move to the end of the document"
    - =gg= "Move to the beginning of the document"
 
-** Delete (cut), Yank (copy), Change
-   
-These require a *motion* to know how they should operate.
+** Changing Things
 
-** Think of
+   - =d= Delete (cut)
+   - =y= Yank (copy)
+   - =c= Change (delete and change to insert mode)
+   
+These require a *motion* so that Vim knows /what/ to act on.
+
+** For Example
 
    - =dip= "Delete in paragraph"
    - =y3w= "Yank the next three words"
-   - =ctx= "Change until the next 'x'"
+   - =ct.= "Change until the next '.'"
    - =dG=  "Delete to the end of the document"
      
 ** 
+  :PROPERTIES:
+  :reveal_background: img/vim-two-main-modes.gif
+  :END:
+  
+** 
 
-As you become more fluent in Vim's language, reading and writing in this syntax becomes second nature.
+The above changes are all just keystrokes.
 
-We'll explore more of these later. The main takeaway that we can succinctly describe the changes we want to make using Vim's language.
+Printing them out on the screen looks like:
 
+#+BEGIN_SRC 
+yy3pfjcwflew^[jciwsoared^[jFqc/the^Mslow green turtle crept past ^[
+#+END_SRC
+     
 * Search
+ 
+We think of Vim as primarily text editor...
+
+** 
   - =/= "Start a search going forward in the document"
   - =?= "Start a search going backwards in the document"
   - =n= "Go to the next search hit"
   - =N= "Go to the previous search hit"
     
-** TODO gif of searching
+** 
+  :PROPERTIES:
+  :reveal_background: img/search-default.gif
+  :END:
 
 ** This works, but...
    
@@ -104,22 +123,32 @@ It's hard to know exactly where the cursor has jumped to.
 
 What if we could get some better visual feedback?
 
-** Two quick settings to enable
+** Enable Settings
    
    - =:set incsearch= "Turn incremental search on"
-   - =:set noincsearch= "Turn incremental search off"
    - =:set hlsearch= "Turn highlight search on"
-   - =:set nohlsearch= "Turn highlight search off"
-     
-** TODO gif of searching with these settings enabled
+   - =:set number= "Turn line numbers on"
+   - =:set wrap= "Turn on line wrapping"
 
-This immediately improves the experience since you can see what you are searching for as well as be able to stop typing the moment you have your hit.
+   - =:set noincsearch= "Turn incremental search off"
+   - =:set nohlsearch= "Turn highlight search off"
+   - =:set nonumber= "Turn line numbers off"
+   - =:set nowrap= "Turn off line wrapping"
+     
+** 
+  :PROPERTIES:
+  :reveal_background: img/search-settings.gif
+  :END:
 
 * Macros
   
+Replacing tedious tasks.
+  
+#+BEGIN_NOTES
 Remember how we can describe our changes specifically by using Vim's language?
 
 What if we could store those "descriptions" and replay them whenever we wanted to?
+#+END_NOTES
 
 ** Registers
    
@@ -129,9 +158,8 @@ Think of these like a variable that you can store text in.
 
 ** Record Macros
 
-   - =qq= "Start and stop recording a macro to the 'q' register"
-
-*** TODO gif of recording a macros
+   - =qq= "Start recording a macro to the 'q' register"
+   - =q=  "When done, press q again to stop recording"
 
 ** Replay Macros
    
@@ -139,19 +167,30 @@ Think of these like a variable that you can store text in.
    - =@@=   "Replace the last used macro"
    - =12@q= "For twelve times, replay the 'q' macro"
 
-*** TODO gif of replaying a macros
+** 
+   :PROPERTIES:
+   :reveal_background: img/macros-names.gif
+   :END:
+
+**   
+
+This is portable. The keystrokes for the above transformation looks like this:
+
+#+BEGIN_SRC 
+0cl#^[lly$o^[p:s/ /_/g^M^Vu^[Vu^[i  - https://example.com/^[o  - Notes:^M^[j
+#+END_SRC
 
 ** 
 
 Because creating and using a macro is so easy, this becomes a great way to apply tedious and repeditive changes.
 
-** TODO Examples?
-
-* Ok... so neat?
+* Ok, so... neat?
   
+#+BEGIN_NOTES
 The previous things can all mostly be done with "vi-mode" plugins that are available for other editors.
 
 So why continue with Vim?
+#+END_NOTES
 
 * =ex= Mode
   
@@ -161,14 +200,141 @@ While "Normal" and "Insert" mode are the most common modes in Vim, Ex-mode is wh
 
 ** 
 
-You've probably already made use of this mode with =:w= and =:q=. 
-
+You've probably already made use of this mode with 
+    - =:w= Write (save)
+    - =:q= Quit
     - =:help ex-cmd-index= -- get a list of all ex commands
       
-** Substitute -- Maybe get rid of me?
+* Substitute
 
-    - =:%s/regex/replace/g=
+=:%s/regex/replace/g=
       
+** 
+   :PROPERTIES:
+   :reveal_background: img/ex-mode-substitute.gif
+   :END:
+   
+#+BEGIN_NOTES
+Substitute is another useful one, but let's look some more powerful ones.
+#+END_NOTES
+
+* Global
+   
+=:g/regex/command=
+   
+"Do stuff on lines"
+
+** Global Print
+
+=:g/regex/p=
+
+"Global Regular Expression Print"
+
+** 
+   :PROPERTIES:
+   :reveal_background: img/ex-mode-print.gif
+   :END:
+
+** Global Delete
+   
+   - =:g/regex/d= "Delete every line matching a regex"
+   - =:v/regex/d= "Delete every line NOT matching a regex"
+     
+** 
+   :PROPERTIES:
+   :reveal_background: img/ex-mode-delete.gif
+   :END:
+
+#+BEGIN_NOTES
+Deleting either matching lines or non-matching lines is a great way to "throw-out" visual noise on the way to other things.
+
+In this gif we delete all the lines that don't match our table definitions, and then use a macros to transform those lines into SQL statements.
+#+END_NOTES
+	
+** Global Normal
+   
+=:g/regex/normal @q=
+     
+#+BEGIN_NOTES
+Returning to our example of markdown names, what if we discover that we want to add some characters to the headings?
+
+We can no longer operate on each individual line, but we /can/ do things that target lines that start with a hash!
+#+END_NOTES
+
+** 
+   :PROPERTIES:
+   :reveal_background: img/ex-mode-global-normal.gif
+   :END:
+
+** TODO convert to =.mov=
+   :PROPERTIES:
+   :reveal_background: img/ex-mode-global-normal-macro.gif
+   :END:
+
+* Scripting Vim
+  
+Vim runs in the terminal...
+
+** 
+    =vim -c ":<do-stuff>"=
+
+** Yeah, ok. But when would I actually /use/ that?
+   
+** Remove Wordfence Database Tables from SQL Dump
+   
+** 
+   :PROPERTIES:
+   :reveal_background: img/wordfence-table.png
+   :END:
+   
+#+BEGIN_NOTES
+We can see that the dump follows a general pattern:
+1. table definition comment
+2. table definition SQL
+3. table data comment
+4. table data SQL
+   
+In all of those cases, the name of the table is known, so we can search for =_wf.{-}`= to get each of those lines and then delete the "paragraph"
+#+END_NOTES
+
+** 
+@@html:<video controls width="900" height="600" src="img/wordfence-delete-tables.mov"></video>@@
+
+**  
+
+#+BEGIN_SRC bash
+#!/bin/bash
+# Usage: remove-wf-tables.sh db.sql
+file="$1"
+mv "$file" "$file.original"
+vim -c 'let @t=""' \
+  -c ':g/\v_wf.{-}\`/normal "Tyapdap' \
+  -c ":sav $file" \
+  -c ':new wf-tables.sql.bak | :normal "tp' \
+  -c ':wa | :qa' \
+  "$file.original"
+#+END_SRC
+
+* Vimgolf  
+  
+** 
+   :PROPERTIES:
+   :reveal_background: img/vim-golf.png
+   :END:
+
+** 
+   :PROPERTIES:
+   :reveal_background: img/vim-golf-solutions.png
+   :END:
+
+* Is it "worth it" to learn Vim?
+
+* Resources
+    - [[https://danielmiessler.com/study/vim/][Daniel Miessler: Learn Vim for the Last Time]]
+    - [[http://vimcasts.org/][Vimcasts.org]]
+    - [[https://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980][Practical Vim]]
+    - [[https://www.vimgolf.com/][VimGolf]]
+
 * Vimgrep
    
 =:vimgrep 'search-string' **/*.php=
@@ -193,47 +359,3 @@ A list of places within documents.
 By default Vimgrep will populate the quickfix list which allows you to quickly jump to different locations.
 
 ** TODO gif of quickfix
-
-* Global Ex Command
-   
-=:g/regex/command=
-   
-"Do stuff on lines"
-
-** Printing Lines
-   
-Do you ever wonder where =grep= got its name?
-
-** Global Regular Expression Print
-
-=:g/regex/p=
-
-** TODO gif showing table structure of sql dump
-
-** Deleting Lines
-   
-   - =:g/regex/d= "Delete every line matching a regex"
-   - =:v/regex/d= "Delete every line NOT matching a regex"
-     
-** TODO gif showing deletion of lines
-	
-** Execute Normal on every matched line
-   
-   - =:g/regex/normal @q=
-     
-** TODO gif showing global normal command
-
-* Scripting Vim
-    - =vim -c ":<do-stuff>"=
-
-* Is it "worth it" to learn Vim?
-  
-* Resources
-    - [[https://danielmiessler.com/study/vim/][Daniel Miessler: Learn Vim for the Last Time]]
-    - [[http://vimcasts.org/][Vimcasts.org]]
-    - [[https://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980][Practical Vim]]
-    - [[https://www.vimgolf.com/][VimGolf]]
-* Why Vim when there are so many good text editors?
-** Vi-style bindings in other places
-     - Editors
-     - Shells
