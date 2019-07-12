@@ -20,6 +20,14 @@ body {
   background: #fff;
   background-color: #fff; }
 
+code {
+    border: 3px solid #64C0D1;
+    background: black;
+    padding: 0.125em 0.45em;
+    margin: 0.1em;
+    display: inline-block;
+}
+
 .reveal {
   font-family: "Open Sans", sans-serif;
   font-size: 32px;
@@ -238,11 +246,11 @@ body {
 /*********************************************
  * IMAGES
  *********************************************/
-.reveal section img {
-  margin: 15px 0px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+/* .reveal section img { */
+/*   margin: 15px 0px; */
+/*   background: rgba(255, 255, 255, 0.12); */
+/*   border: 4px solid #000; */
+/*   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); } */
 
 .reveal section img.plain {
   border: 0;
@@ -275,3 +283,42 @@ body {
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/**********************************************
+* Custom for this presentation
+***********************************************/
+
+pre.example {
+    background: black;
+    padding: .5em 1em;
+    display: block;
+}
+
+/* Make title slides images cover screen */
+.slide-background-content {
+    background-size: 2200px !important;
+}
+
+section[data-background*="img"] {
+    background-color: rgba(0,0,0,.75);
+}
+
+div[data-background-hash*="brutal-legend"] div {
+    background-position: center top !important;
+}
+
+section[data-background-image*="brutal-legend"] h3 {
+    max-width: 8em;
+    margin: auto;
+}
+
+div[data-background-hash*="unicorn-pug"] div {
+    background-position: center top -105px !important;
+}
+
+/* Center ...amazing things can happen text */
+section#slide-org05e7340 * {
+    max-width: 14em;
+    font-size: 2em;
+    margin: auto;
+}

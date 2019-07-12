@@ -1,4 +1,4 @@
-#+OPTIONS: num:nil toc:nil
+#+OPTIONS: num:nil toc:nil reveal_title_slide:nil
 #+REVEAL_TRANS: Fade
 #+REVEAL_THEME: none
 #+REVEAL_EXTRA_CSS: style.css
@@ -8,6 +8,10 @@
 #+Author: Benjamin Turner
 
 # NOTE: The terminal size of this presentation is 83x28 and has the font scaled to up a number of times
+
+* Using Vim
+
+Mastering the Dark Arts
 
 * Vim is like...
 ** A Unicorn Horn
@@ -20,14 +24,21 @@
   :reveal_background: img/brutal-legend.jpg
   :END:
 
-** You're very own Patronus
+** Your Very Own Patronus
   :PROPERTIES:
   :reveal_background: img/patronus.jpg
   :END:
 
 ** 
 
-When you know how to use it, uncanny things can happen.
+When you know how to use it, amazing things can happen.
+
+#+BEGIN_NOTES
+Goals of this presentation:
+- We're using vanilla vim to show what's possible, even in remote environments
+- More foundational and less "how-to"
+- We'll go through some exercises and resources to improve skills at the end
+#+END_NOTES
 
 * Modal Editing
   :PROPERTIES:
@@ -47,15 +58,18 @@ There are different *modes*, or /states/ that can be activated.
 [[file:./img/vim-two-main-modes.gif]]
 
 * The Vim Language
-  
-** 
-
-In Normal mode, you can describe exactly what you want to do by executing a series of characters.
-
-** 
   :PROPERTIES:
-  :reveal_background: img/movement-prose.gif
+  :reveal_background: img/dmitry-ratushny-wpi3sDUrSEk-unsplash.jpg
+  :reveal_title_slide_background_size: 2400px
   :END:
+  
+** Normal Mode
+   
+Exactly describe the changes you want to see.
+
+** 
+
+[[file:./img/movement-prose.gif]]
 
 ** Moving between words
 
@@ -88,21 +102,26 @@ These require a *motion* so that Vim knows /what/ to act on.
    - =dG=  "Delete to the end of the document"
      
 ** 
-  :PROPERTIES:
-  :reveal_background: img/vim-two-main-modes.gif
-  :END:
+
+[[file:./img/vim-two-main-modes.gif]]
   
 ** 
 
 The above changes are all just keystrokes.
 
-Printing them out on the screen looks like:
-
 #+BEGIN_SRC 
 yy3pfjcwflew^[jciwsoared^[jFqc/the^Mslow green turtle crept past ^[
 #+END_SRC
      
+** 
+
+   - =u= Undo
+   - =Ctrl-r= Redo
+
 * Search
+  :PROPERTIES:
+  :reveal_background: img/paul-green-mln2ExJIkfc-unsplash.jpg
+  :END:
  
 We think of Vim as primarily text editor...
 
@@ -113,9 +132,8 @@ We think of Vim as primarily text editor...
   - =N= "Go to the previous search hit"
     
 ** 
-  :PROPERTIES:
-  :reveal_background: img/search-default.gif
-  :END:
+
+[[file:./img/search-default.gif]]
 
 ** This works, but...
    
@@ -136,11 +154,18 @@ What if we could get some better visual feedback?
    - =:set nowrap= "Turn off line wrapping"
      
 ** 
-  :PROPERTIES:
-  :reveal_background: img/search-settings.gif
-  :END:
+
+[[file:./img/search-settings.gif]]
+
+** 
+
+   - =Ctrl-f= Scroll one page forward
+   - =Ctrl-b= Scroll one page backward
 
 * Macros
+  :PROPERTIES:
+  :reveal_background: img/andrew-wulf-9wxaMpJNOWw-unsplash.jpg
+  :END:
   
 Replacing tedious tasks.
   
@@ -168,13 +193,12 @@ Think of these like a variable that you can store text in.
    - =12@q= "For twelve times, replay the 'q' macro"
 
 ** 
-   :PROPERTIES:
-   :reveal_background: img/macros-names.gif
-   :END:
 
-**   
+[[file:./img/macros-names.gif]]
 
-This is portable. The keystrokes for the above transformation looks like this:
+** This is Portable
+
+The keystrokes for the above transformation looks like this:
 
 #+BEGIN_SRC 
 0cl#^[lly$o^[p:s/ /_/g^M^Vu^[Vu^[i  - https://example.com/^[o  - Notes:^M^[j
@@ -184,15 +208,10 @@ This is portable. The keystrokes for the above transformation looks like this:
 
 Because creating and using a macro is so easy, this becomes a great way to apply tedious and repeditive changes.
 
-* Ok, so... neat?
-  
-#+BEGIN_NOTES
-The previous things can all mostly be done with "vi-mode" plugins that are available for other editors.
-
-So why continue with Vim?
-#+END_NOTES
-
-* =ex= Mode
+* :ex Mode
+  :PROPERTIES:
+  :reveal_background: img/ivan-timov-b_Za9cgcTKA-unsplash.jpg
+  :END:
   
 ** 
 
@@ -204,21 +223,11 @@ You've probably already made use of this mode with
     - =:w= Write (save)
     - =:q= Quit
     - =:help ex-cmd-index= -- get a list of all ex commands
-      
-* Substitute
-
-=:%s/regex/replace/g=
-      
-** 
-   :PROPERTIES:
-   :reveal_background: img/ex-mode-substitute.gif
-   :END:
-   
-#+BEGIN_NOTES
-Substitute is another useful one, but let's look some more powerful ones.
-#+END_NOTES
 
 * Global
+  :PROPERTIES:
+  :reveal_background: img/nasa-Q1p7bh3SHj8-unsplash.jpg
+  :END:
    
 =:g/regex/command=
    
@@ -231,9 +240,8 @@ Substitute is another useful one, but let's look some more powerful ones.
 "Global Regular Expression Print"
 
 ** 
-   :PROPERTIES:
-   :reveal_background: img/ex-mode-print.gif
-   :END:
+
+[[file:./img/ex-mode-print.gif]]
 
 ** Global Delete
    
@@ -241,9 +249,8 @@ Substitute is another useful one, but let's look some more powerful ones.
    - =:v/regex/d= "Delete every line NOT matching a regex"
      
 ** 
-   :PROPERTIES:
-   :reveal_background: img/ex-mode-delete.gif
-   :END:
+
+[[file:./img/ex-mode-delete.gif]]
 
 #+BEGIN_NOTES
 Deleting either matching lines or non-matching lines is a great way to "throw-out" visual noise on the way to other things.
@@ -262,41 +269,27 @@ We can no longer operate on each individual line, but we /can/ do things that ta
 #+END_NOTES
 
 ** 
-   :PROPERTIES:
-   :reveal_background: img/ex-mode-global-normal.gif
-   :END:
 
-** TODO convert to =.mov=
-   :PROPERTIES:
-   :reveal_background: img/ex-mode-global-normal-macro.gif
-   :END:
+[[file:./img/ex-mode-global-normal.gif]]
+
+** 
+
+[[file:./img/ex-mode-global-normal-macro.gif]]
 
 * Scripting Vim
-  
-Vim runs in the terminal...
-
+  :PROPERTIES:
+  :reveal_background: img/john-fowler-7Ym9rpYtSdA-unsplash.jpg 
+  :END:
+ 
 ** 
     =vim -c ":<do-stuff>"=
 
-** Yeah, ok. But when would I actually /use/ that?
-   
-** Remove Wordfence Database Tables from SQL Dump
+** Remove Wordfence Tables from SQL Dump
    
 ** 
-   :PROPERTIES:
-   :reveal_background: img/wordfence-table.png
-   :END:
-   
-#+BEGIN_NOTES
-We can see that the dump follows a general pattern:
-1. table definition comment
-2. table definition SQL
-3. table data comment
-4. table data SQL
-   
-In all of those cases, the name of the table is known, so we can search for =_wf.{-}`= to get each of those lines and then delete the "paragraph"
-#+END_NOTES
 
+[[file:./img/wordfence-table.png]]
+   
 ** 
 @@html:<video controls width="900" height="600" src="img/wordfence-delete-tables.mov"></video>@@
 
@@ -315,47 +308,23 @@ vim -c 'let @t=""' \
   "$file.original"
 #+END_SRC
 
-* Vimgolf  
-  
-** 
-   :PROPERTIES:
-   :reveal_background: img/vim-golf.png
-   :END:
-
-** 
-   :PROPERTIES:
-   :reveal_background: img/vim-golf-solutions.png
-   :END:
-
-* Is it "worth it" to learn Vim?
-
 * Resources
+  :PROPERTIES:
+  :reveal_background: img/martin-adams-V75YEqJp4pE-unsplash.jpg 
+  :END:
+
     - [[https://danielmiessler.com/study/vim/][Daniel Miessler: Learn Vim for the Last Time]]
     - [[http://vimcasts.org/][Vimcasts.org]]
     - [[https://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980][Practical Vim]]
     - [[https://www.vimgolf.com/][VimGolf]]
 
-* Vimgrep
-   
-=:vimgrep 'search-string' **/*.php=
+* Vimgolf
+  
+** 
 
-"Find things in these files"
-
-** TODO gif of vimgrep
-   
-** Quickfix
-   
-A list of places within documents.
+[[file:./img/vim-golf.png]]
 
 ** 
-   
-   - =copen= "Open the quickfix window"
-   - =cclose= "Close the quickfix window"
-   - =cnext= "Display the next error"
-   - =cprevious= "Display the previous error"
 
-** 
-   
-By default Vimgrep will populate the quickfix list which allows you to quickly jump to different locations.
+[[file:./img/vim-golf-solutions.png]]
 
-** TODO gif of quickfix
