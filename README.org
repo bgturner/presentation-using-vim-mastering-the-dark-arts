@@ -5,3 +5,14 @@
 Vim has a reputation for being old and hard to use. This is well deserved. Maybe you've heard about Vim and have mastered quitting it. Maybe you're curious about learning more, but want to know the larger /why/ -- what's in it for me?
 
 Let's take a look at some of the powerful features that are built into Vim and how learning it can be a great addition to your tech toolbelt.
+
+* Meta
+  
+This repo is using [[https://orgmode.org/][Emacs' Org Mode]] to rough out the content for the presentation. Once everything was in a final, stable state, [[https://github.com/yjwen/org-reveal][org-reveal]] was used to export the final HTML slide deck.
+
+The compiled presentation can be viewed here on Github Pages:
+
+- [[https://bgturner.github.io/presentation-using-vim-mastering-the-dark-arts/]]
+
+
+
