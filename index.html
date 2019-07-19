@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Using Vim: Mastering the Dark Arts</title>
+<meta name="author" content="(Benjamin Turner)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/none.css" id="theme"/>
+
+<link rel="stylesheet" href="style.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+<section id="slide-org5418a4d" data-background-size="1400px">
+<h2 id="org5418a4d">Using Vim</h2>
+<p>
+Mastering the Dark Arts
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdc6890c" data-background-size="1400px">
+<h2 id="orgdc6890c">Vim is like&#x2026;</h2>
+<div class="outline-text-2" id="text-orgdc6890c">
+</div>
+</section>
+<section id="slide-orgbc4438e" data-background="img/unicorn-pug.jpg" data-background-size="1400px">
+<h3 id="orgbc4438e">A Unicorn Horn</h3>
+
+</section>
+<section id="slide-org677cb04" data-background="img/brutal-legend.jpg" data-background-size="1400px">
+<h3 id="org677cb04">The Ax of a Heavy Metal God</h3>
+
+</section>
+<section id="slide-org2b75fb3" data-background="img/patronus.jpg" data-background-size="1400px">
+<h3 id="org2b75fb3">Your Very Own Patronus</h3>
+
+</section>
+<section id="slide-org4934a99" data-background-size="1400px">
+<h3 id="org4934a99"></h3>
+<p>
+When you know how to use it, amazing things can happen.
+</p>
+
+<aside class="notes">
+<p>
+Goals of this presentation:
+</p>
+<ul>
+<li>We're using vanilla vim to show what's possible, even in remote environments</li>
+<li>More foundational and less "how-to"</li>
+<li>We'll go through some exercises and resources to improve skills at the end</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org46186d9" data-background="img/Dr_Jekyll_and_Mr_Hyde_poster_edit2.jpg" data-background-size="1400px">
+<h2 id="org46186d9">Modal Editing</h2>
+<p>
+There are different <b>modes</b>, or <i>states</i> that can be activated.
+</p>
+
+</section>
+<section id="slide-org3fe8535" data-background-size="1400px">
+<h3 id="org3fe8535">Two Main Modes</h3>
+<ul>
+<li><b>Normal</b>
+<ul>
+<li>"Do stuff" mode. Move around a document, copy and paste, etc.</li>
+
+</ul></li>
+<li><b>Insert</b>
+<ul>
+<li>Insert text. This is what you're used to in other editors.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orge5e89c1" data-background-size="1400px">
+<h3 id="orge5e89c1"></h3>
+
+<div class="figure">
+<p><img src="./img/vim-two-main-modes.gif" alt="vim-two-main-modes.gif" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb8285f1" data-background="img/dmitry-ratushny-wpi3sDUrSEk-unsplash.jpg" data-background-size="1400px">
+<h2 id="orgb8285f1">The Vim Language</h2>
+</section>
+<section id="slide-orgee52b76" data-background-size="1400px">
+<h3 id="orgee52b76">Normal Mode</h3>
+<p>
+Exactly describe the changes you want to see.
+</p>
+
+</section>
+<section id="slide-orgd37d0fb" data-background-size="1400px">
+<h3 id="orgd37d0fb"></h3>
+
+<div class="figure">
+<p><img src="./img/movement-prose.gif" alt="movement-prose.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgba131ef" data-background-size="1400px">
+<h3 id="orgba131ef">Moving between words</h3>
+<ul>
+<li><code>w</code> Move to the start of the next word</li>
+<li><code>e</code> Move to the end of the next word</li>
+<li><code>b</code> Move back one word</li>
+<li><code>f.</code> Move to the next period '.' on this line</li>
+<li><code>fA</code> Move to the next capital 'A' on this line</li>
+<li><code>F;</code> Move to the previous semi-colon on this line</li>
+
+</ul>
+
+</section>
+<section id="slide-org701a9ab" data-background-size="1400px">
+<h3 id="org701a9ab">Moving in the document</h3>
+<ul>
+<li><code>}</code>  "Move to the next section"</li>
+<li><code>G</code>  "Move to the end of the document"</li>
+<li><code>gg</code> "Move to the beginning of the document"</li>
+
+</ul>
+
+</section>
+<section id="slide-org2904b71" data-background-size="1400px">
+<h3 id="org2904b71">Changing Things</h3>
+<ul>
+<li><code>d</code> Delete (cut)</li>
+<li><code>y</code> Yank (copy)</li>
+<li><code>c</code> Change (delete and change to insert mode)</li>
+
+</ul>
+
+<p>
+These require a <b>motion</b> so that Vim knows <i>what</i> to act on.
+</p>
+
+</section>
+<section id="slide-org1c0c058" data-background-size="1400px">
+<h3 id="org1c0c058">For Example</h3>
+<ul>
+<li><code>dip</code> "Delete in paragraph"</li>
+<li><code>y3w</code> "Yank the next three words"</li>
+<li><code>ct.</code> "Change until the next '.'"</li>
+<li><code>dG</code>  "Delete to the end of the document"</li>
+
+</ul>
+
+</section>
+<section id="slide-orgd6d8130" data-background-size="1400px">
+<h3 id="orgd6d8130"></h3>
+
+<div class="figure">
+<p><img src="./img/vim-two-main-modes.gif" alt="vim-two-main-modes.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-org2eb0e16" data-background-size="1400px">
+<h3 id="org2eb0e16"></h3>
+<p>
+The above changes are all just keystrokes.
+</p>
+
+<pre  class="example">
+yy3pfjcwflew^[jciwsoared^[jFqc/the^Mslow green turtle crept past ^[
+</pre>
+
+</section>
+<section id="slide-org874e444" data-background-size="1400px">
+<h3 id="org874e444"></h3>
+<ul>
+<li><code>u</code> Undo</li>
+<li><code>Ctrl-r</code> Redo</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org5873fa4" data-background="img/paul-green-mln2ExJIkfc-unsplash.jpg" data-background-size="1400px">
+<h2 id="org5873fa4">Search</h2>
+<p>
+We think of Vim as primarily text editor&#x2026;
+</p>
+
+</section>
+<section id="slide-orgad41f6e" data-background-size="1400px">
+<h3 id="orgad41f6e"></h3>
+<ul>
+<li><code>/</code> "Start a search going forward in the document"</li>
+<li><code>?</code> "Start a search going backwards in the document"</li>
+<li><code>n</code> "Go to the next search hit"</li>
+<li><code>N</code> "Go to the previous search hit"</li>
+
+</ul>
+
+</section>
+<section id="slide-orgb8e4f5a" data-background-size="1400px">
+<h3 id="orgb8e4f5a"></h3>
+
+<div class="figure">
+<p><img src="./img/search-default.gif" alt="search-default.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-org7c105c9" data-background-size="1400px">
+<h3 id="org7c105c9">This works, but&#x2026;</h3>
+<p>
+It's hard to know exactly where the cursor has jumped to. 
+</p>
+
+<p>
+What if we could get some better visual feedback?
+</p>
+
+</section>
+<section id="slide-org84520bb" data-background-size="1400px">
+<h3 id="org84520bb">Enable Settings</h3>
+<ul>
+<li><code>:set incsearch</code> "Turn incremental search on"</li>
+<li><code>:set hlsearch</code> "Turn highlight search on"</li>
+<li><code>:set number</code> "Turn line numbers on"</li>
+<li><code>:set wrap</code> "Turn on line wrapping"</li>
+
+<li><code>:set noincsearch</code> "Turn incremental search off"</li>
+<li><code>:set nohlsearch</code> "Turn highlight search off"</li>
+<li><code>:set nonumber</code> "Turn line numbers off"</li>
+<li><code>:set nowrap</code> "Turn off line wrapping"</li>
+
+</ul>
+
+</section>
+<section id="slide-orgbc766e6" data-background-size="1400px">
+<h3 id="orgbc766e6"></h3>
+
+<div class="figure">
+<p><img src="./img/search-settings.gif" alt="search-settings.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-org3128da4" data-background-size="1400px">
+<h3 id="org3128da4"></h3>
+<ul>
+<li><code>Ctrl-f</code> Scroll one page forward</li>
+<li><code>Ctrl-b</code> Scroll one page backward</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc41418f" data-background="img/andrew-wulf-9wxaMpJNOWw-unsplash.jpg" data-background-size="1400px">
+<h2 id="orgc41418f">Macros</h2>
+<p>
+Replacing tedious tasks.
+</p>
+
+<aside class="notes">
+<p>
+Remember how we can describe our changes specifically by using Vim's language?
+</p>
+
+<p>
+What if we could store those "descriptions" and replay them whenever we wanted to?
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org3295c1a" data-background-size="1400px">
+<h3 id="org3295c1a">Registers</h3>
+<p>
+Vim has <b>named registers</b> from <code>a .. z</code> 
+</p>
+
+<p>
+Think of these like a variable that you can store text in. 
+</p>
+
+</section>
+<section id="slide-orgbd1db20" data-background-size="1400px">
+<h3 id="orgbd1db20">Record Macros</h3>
+<ul>
+<li><code>qq</code> "Start recording a macro to the 'q' register"</li>
+<li><code>q</code>  "When done, press q again to stop recording"</li>
+
+</ul>
+
+</section>
+<section id="slide-org4e4dfbf" data-background-size="1400px">
+<h3 id="org4e4dfbf">Replay Macros</h3>
+<ul>
+<li><code>@q</code>   "Replay the macro in the 'q' register"</li>
+<li><code>@@</code>   "Replace the last used macro"</li>
+<li><code>12@q</code> "For twelve times, replay the 'q' macro"</li>
+
+</ul>
+
+</section>
+<section id="slide-orga718354" data-background-size="1400px">
+<h3 id="orga718354"></h3>
+
+<div class="figure">
+<p><img src="./img/macros-names.gif" alt="macros-names.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-org3892333" data-background-size="1400px">
+<h3 id="org3892333">This is Portable</h3>
+<p>
+The keystrokes for the above transformation looks like this:
+</p>
+
+<pre  class="example">
+0cl#^[lly$o^[p:s/ /_/g^M^Vu^[Vu^[i  - https://example.com/^[o  - Notes:^M^[j
+</pre>
+
+</section>
+<section id="slide-org724c71c" data-background-size="1400px">
+<h3 id="org724c71c"></h3>
+<p>
+Because creating and using a macro is so easy, this becomes a great way to apply tedious and repeditive changes.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfd71453" data-background="img/ivan-timov-b_Za9cgcTKA-unsplash.jpg" data-background-size="1400px">
+<h2 id="orgfd71453">:ex Mode</h2>
+</section>
+<section id="slide-org097881b" data-background-size="1400px">
+<h3 id="org097881b"></h3>
+<p>
+While "Normal" and "Insert" mode are the most common modes in Vim, Ex-mode is where things really get exciting!
+</p>
+
+</section>
+<section id="slide-orgfff5527" data-background-size="1400px">
+<h3 id="orgfff5527"></h3>
+<p>
+You've probably already made use of this mode with 
+</p>
+<ul>
+<li><code>:w</code> Write (save)</li>
+<li><code>:q</code> Quit</li>
+<li><code>:help ex-cmd-index</code> &#x2013; get a list of all ex commands</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org8c4543a" data-background="img/nasa-Q1p7bh3SHj8-unsplash.jpg" data-background-size="1400px">
+<h2 id="org8c4543a">Global</h2>
+<p>
+<code>:g/regex/command</code>
+</p>
+
+<p>
+"Do stuff on lines"
+</p>
+
+</section>
+<section id="slide-orgf24f9aa" data-background-size="1400px">
+<h3 id="orgf24f9aa">Global Print</h3>
+<p>
+<code>:g/regex/p</code>
+</p>
+
+<p>
+"Global Regular Expression Print"
+</p>
+
+</section>
+<section id="slide-org250cdc6" data-background-size="1400px">
+<h3 id="org250cdc6"></h3>
+
+<div class="figure">
+<p><img src="./img/ex-mode-print.gif" alt="ex-mode-print.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-org0fab982" data-background-size="1400px">
+<h3 id="org0fab982">Global Delete</h3>
+<ul>
+<li><code>:g/regex/d</code> "Delete every line matching a regex"</li>
+<li><code>:v/regex/d</code> "Delete every line NOT matching a regex"</li>
+
+</ul>
+
+</section>
+<section id="slide-org0d715ec" data-background-size="1400px">
+<h3 id="org0d715ec"></h3>
+
+<div class="figure">
+<p><img src="./img/ex-mode-delete.gif" alt="ex-mode-delete.gif" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Deleting either matching lines or non-matching lines is a great way to "throw-out" visual noise on the way to other things.
+</p>
+
+<p>
+In this gif we delete all the lines that don't match our table definitions, and then use a macros to transform those lines into SQL statements.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orga8e14bc" data-background-size="1400px">
+<h3 id="orga8e14bc">Global Normal</h3>
+<p>
+<code>:g/regex/normal @q</code>
+</p>
+
+<aside class="notes">
+<p>
+Returning to our example of markdown names, what if we discover that we want to add some characters to the headings?
+</p>
+
+<p>
+We can no longer operate on each individual line, but we <i>can</i> do things that target lines that start with a hash!
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orga7d5125" data-background-size="1400px">
+<h3 id="orga7d5125"></h3>
+
+<div class="figure">
+<p><img src="./img/ex-mode-global-normal.gif" alt="ex-mode-global-normal.gif" />
+</p>
+</div>
+
+</section>
+<section id="slide-org22fb8ad" data-background-size="1400px">
+<h3 id="org22fb8ad"></h3>
+
+<div class="figure">
+<p><img src="./img/ex-mode-global-normal-macro.gif" alt="ex-mode-global-normal-macro.gif" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org05ed2e4" data-background="img/john-fowler-7Ym9rpYtSdA-unsplash.jpg" data-background-size="1400px">
+<h2 id="org05ed2e4">Scripting Vim</h2>
+</section>
+<section id="slide-orgf1ce0b5" data-background-size="1400px">
+<h3 id="orgf1ce0b5"></h3>
+<p>
+<code>vim -c ":&lt;do-stuff&gt;"</code>
+</p>
+
+</section>
+<section id="slide-org7616eb3" data-background-size="1400px">
+<h3 id="org7616eb3">Remove Wordfence Tables from SQL Dump</h3>
+
+</section>
+<section id="slide-org15ed381" data-background-size="1400px">
+<h3 id="org15ed381"></h3>
+
+<div class="figure">
+<p><img src="./img/wordfence-table.png" alt="wordfence-table.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-org5b7e464" data-background-size="1400px">
+<h3 id="org5b7e464"></h3>
+<p>
+<video controls width="900" height="600" src="img/wordfence-delete-tables.mov"></video>
+</p>
+
+</section>
+<section id="slide-orgb5cd437" data-background-size="1400px">
+<h3 id="orgb5cd437"></h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><code trim><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/</span><span style="color: #51afef;">bash</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Usage: remove-wf-tables.sh db.sql</span>
+<span style="color: #dcaeea;">file</span>=<span style="color: #98be65;">"$1"</span>
+mv <span style="color: #98be65;">"$file"</span> <span style="color: #98be65;">"$file.original"</span>
+vim -c <span style="color: #98be65;">'let @t=""'</span> <span style="color: #98be65;">\</span>
+  -c <span style="color: #98be65;">':g/\v_wf.{-}\`/normal "Tyapdap'</span> <span style="color: #98be65;">\</span>
+  -c <span style="color: #98be65;">":sav $file"</span> <span style="color: #98be65;">\</span>
+  -c <span style="color: #98be65;">':new wf-tables.sql.bak | :normal "tp'</span> <span style="color: #98be65;">\</span>
+  -c <span style="color: #98be65;">':wa | :qa'</span> <span style="color: #98be65;">\</span>
+  <span style="color: #98be65;">"$file.original"</span>
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbc20751" data-background="img/martin-adams-V75YEqJp4pE-unsplash.jpg" data-background-size="1400px">
+<h2 id="orgbc20751">Resources</h2>
+<ul>
+<li><a href="https://danielmiessler.com/study/vim/">Daniel Miessler: Learn Vim for the Last Time</a></li>
+<li><a href="http://vimcasts.org/">Vimcasts.org</a></li>
+<li><a href="https://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980">Practical Vim</a></li>
+<li><a href="https://www.vimgolf.com/">VimGolf</a></li>
+<li>#vim-users</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org8cf94b6" data-background-size="1400px">
+<h2 id="org8cf94b6">Vimgolf</h2>
+<div class="outline-text-2" id="text-org8cf94b6">
+</div>
+</section>
+<section id="slide-orgf233b0a" data-background-size="1400px">
+<h3 id="orgf233b0a"></h3>
+
+<div class="figure">
+<p><img src="./img/vim-golf.png" alt="vim-golf.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-org6edaf73" data-background-size="1400px">
+<h3 id="org6edaf73"></h3>
+
+<div class="figure">
+<p><img src="./img/vim-golf-solutions.png" alt="vim-golf-solutions.png" />
+</p>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'Fade', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
